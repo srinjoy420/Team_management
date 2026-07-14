@@ -11,15 +11,32 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        lowercase: true,
     },
     password: {
         type: String,
         required: true
     },
+    profilePicture:{
+        type:String,
+        default:"https://ui-avatars.com/api/?name=John+Doe&background=randomhttps://cdn-icons-png.flaticon.com/512/149/149071.png"
+    },
     role: {
         type: String,
         default: "user"
+    },
+    isActive:{
+        type:Boolean,
+        default:true
+    },
+    currentWorkSpace:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Workspace"
+    },
+    lasLogin:{
+        Type:Date,
+        default:null
     },
     refreshToken: {
         type: String,
